@@ -18,7 +18,7 @@ export const defaultAdmin = async(req,res) =>{
                     surname:'Castellanos Zepeta', 
                     email: 'mcastellanos@gmail.com',
                     username: 'mcastellanos',
-                    password:'123456789',
+                    password: await encrypt(process.env.PASSWORD_ADMIN),
                     role: 'ADMIN'
                 }
                 
