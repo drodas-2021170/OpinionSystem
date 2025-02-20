@@ -1,5 +1,6 @@
 import Category from "./category.model.js"
 import Publication from "../publication/publication.model.js"
+
 export const defaultCategory = async(req,res) =>{
     try {
         let deCategory = await Category.findOne({name: 'Default Category'})
