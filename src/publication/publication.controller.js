@@ -43,19 +43,16 @@ export const updatePublication = async(req,res) =>{
 
         let user = await User.findById(req.user.uid)
         
-        let category = await Category.findOne({_id :data.category})
+        let category = await Category.findById(data.category)
         
         let publication = await Publication.findById(id)
-
-        if(category){
-            if(!category) return res.status(404).send({success:false, message:'Category not found'})
-        }
-
-        if(user.id !== publication.user.toString()) return res.status(404).send({success:false, message:'You are not the owner of this publicartion'})
         
         if(!publication) return res.status(404).send({success:false, message:'Publication not found'})
-
-
+            
+        if(user.id !== publication.user.toString()) return res.status(404).send({success:false, message:'You are not the owner of this publicartion'})
+        
+        if(!category) return res.status(404).send({success:false, message:'Category not found'})
+        
         let publicartions = await Publication.findByIdAndUpdate(id, data, {new:true})
         
         return res.send({success: true, message: 'Course updated successfully', publicartions})
@@ -73,6 +70,9 @@ export const deletePublication = async(req,res) =>{
 
         let publication = await Publication.findById(id)
 
+        if(!publication) return res.status(404).send({sucess:false, message:'Publication not found'}
+            
+        )
         if(user.id !== publication.user.toString()) return res.status(404).send({success:false, message:'You are not the owner of this publicartion'})
         
         let deletePublication  = await Publication.deleteOne({_id:id})
