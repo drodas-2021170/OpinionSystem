@@ -6,6 +6,7 @@ import helmet from 'helmet'
 import cors from 'cors'
 import authRoutes from '../src/auth/auth.routes.js'
 import userRoutes from '../src/user/user.routes.js'
+import categoryRoutes from '../src/category/category.routes.js'
 
 const configs = (app) =>{
     app.use(express.json())
@@ -18,6 +19,7 @@ const configs = (app) =>{
 const routes = (app) =>{
     app.use('/v1/auth',authRoutes)
     app.use('/v1/user', userRoutes)
+    app.use('/v1/category',categoryRoutes)
 }
 
 export const initServer = async() =>{
