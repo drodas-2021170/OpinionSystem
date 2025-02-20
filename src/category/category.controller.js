@@ -1,5 +1,5 @@
 import Category from "./category.model.js"
-
+import Publication from "../publication/publication.model.js"
 export const defaultCategory = async(req,res) =>{
     try {
         let deCategory = await Category.findOne({name: 'Default Category'})
@@ -76,7 +76,7 @@ export const deleteCategory = async(req,res) =>{
         
         if(!deCategory) return res.status(404).send({success:false, message:'Default category not found'})
 
-            await Category.updateMany(
+            await Publication.updateMany(
                 {category:id},
                 {category: deCategory._id}
             )

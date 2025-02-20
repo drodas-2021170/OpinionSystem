@@ -25,3 +25,11 @@ export const updateUserValidate =[
     body('newPassword', 'New password is required').optional().notEmpty().isStrongPassword().withMessage('Your new password could be strong'),
     validateErrors
 ]
+
+export const updatePublicationValidate =[
+    body('title', 'Title is required').optional().notEmpty(),
+    body('principal', 'Principal is required').optional().notEmpty(),
+    body('category', 'Category is required').optional().notEmpty(),
+    validateErrors
+]
+
