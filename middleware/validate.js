@@ -33,3 +33,8 @@ export const updatePublicationValidate =[
     validateErrors
 ]
 
+export const addCategoryValidate =[
+    body('name', 'Name is required').notEmpty(),
+    body('description', 'Description is required').notEmpty(),
+    validateErrors
+]

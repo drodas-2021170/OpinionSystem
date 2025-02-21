@@ -24,7 +24,15 @@ export const getAllCommentPublication = async(req, res) =>{
     try {
         let {id} = req.body
         console.log(id)
-        let comment = await Comment.find({publication:id}).populate('user','username').populate('publication', 'title principal')
+        let comment = await Comment.find({publication:id}).populate('user','username').populate({
+            path:'publication', 
+            select:'title principal -_id',
+            populate:{
+                path: 'category',
+                select: 'name -_id'
+            }
+        }
+    )
         
         if(comment.length === 0) return res.status(404).send({success:false, message:'Publication not found'})
             return res.send({success:true, message:'Publication found', comment})
