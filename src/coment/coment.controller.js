@@ -35,3 +35,43 @@ export const getAllCommentPublication = async(req, res) =>{
 }
 
 
+export const updateComment = async(req,res) =>{
+    try {
+        let id = req.body.id
+        let data = req.body
+
+        let comment = await Comment.findById(id)
+
+        if(!comment) return res.status(404).send({success:false, message:'Comment not found'})
+            
+        if(req.user.uid !== comment.user.toString()) return res.status(403).send({success:false, message:'Only the owner can edit this comment'})
+        
+        let updatedComment = await Comment.findByIdAndUpdate(
+            id, data, {new:true}
+        )
+
+        return res.send({success:true, message:'Comment updated successfully', updatedComment})
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({success:false, message:'General Error', err})
+    }
+}
+
+
+export const deleteComment = async(req,res) =>{
+    try{
+        let id = req.body.id
+
+        let comment = await Comment.findById(id)
+            
+        if(req.user.uid !== comment.user.toString()) return res.status(403).send({success:false, message:'Only the owner can delete this comment'})
+    
+        let deletedComment = await Comment.deleteOne({_id:id})
+
+        if(deletedComment.deletedCount <=0)return res.status(404).send({success:false, message:'Comment not deleted'})
+            return res.send({success:true, message:'Comment deleted'})
+    }catch(err){
+        console.log(err)
+        return res.status(500).send({success:false, message:'General Error',err})
+    }
+}

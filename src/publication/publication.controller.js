@@ -70,9 +70,9 @@ export const deletePublication = async(req,res) =>{
 
         let publication = await Publication.findById(id)
 
-        if(!publication) return res.status(404).send({sucess:false, message:'Publication not found'}
-            
-        )
+        console.log(publication.user)
+        if(!publication) return res.status(404).send({sucess:false, message:'Publication not found'})
+        
         if(user.id !== publication.user.toString()) return res.status(404).send({success:false, message:'You are not the owner of this publicartion'})
         
         let deletePublication  = await Publication.deleteOne({_id:id})
