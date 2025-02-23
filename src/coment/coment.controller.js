@@ -10,6 +10,7 @@ export const addComment = async(req,res) =>{
 
         if(!publication) return res.status(404).send({success: false, message:'Publication not found'})
         
+        if(publication.status === false) return res.status(404).send({success: false, message:'Publication not exist'})
         let comment = new Comment({...data, user: req.user.uid})
 
         publication.comment.push(comment._id)
@@ -27,9 +28,13 @@ export const addComment = async(req,res) =>{
 
 export const getAllCommentPublication = async(req, res) =>{
     try {
-        console.log(req.user.uid)
-        let comment = await Comment.find({user: req.user.uid} && {status:true})
-        .populate('user','username')
+        let comment = await Comment.find({
+            $and: [
+                { user: req.user.uid },
+                { status: true }
+            ]
+        })
+        .populate('user','username -_id')
         .select('-status')
         .populate({
             path:'publication', 
@@ -41,7 +46,7 @@ export const getAllCommentPublication = async(req, res) =>{
         }
     )
         
-            return res.send({success:true, message:'Publication found', comment})
+            return res.send({success:true, message:'Comments found', comment, total: comment.length})
     } catch (err) {
         console.error(err)
         return res.status(500).send({success:false, message:'General Error',err})
@@ -79,6 +84,9 @@ export const deleteComment = async(req,res) =>{
         let comment = await Comment.findById(id)
         
         if(!comment) return res.status(404).send({success:false, message:'Comment not found'})
+        
+        if(comment.status === false) return res.status(404).send({success:false, message:'Comment not exist'})
+
         if(req.user.uid !== comment.user.toString()) return res.status(403).send({success:false, message:'Only the owner can delete this comment'})
     
         let commentPublication  = await Comment.findByIdAndUpdate(
