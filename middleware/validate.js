@@ -38,3 +38,25 @@ export const addCategoryValidate =[
     body('description', 'Description is required').notEmpty(),
     validateErrors
 ]
+
+export const updateCategoryValidate = [
+    body('name', 'Name is required').optional().notEmpty(),
+    body('description', 'Description is required').optional().notEmpty(),
+    validateErrors
+]
+
+export const addPublicationValidate =[
+    body('title', 'The title of the publication is required').notEmpty(),
+    body('principal', 'The principal text of the publication is required').notEmpty(),
+    validateErrors
+]
+
+export const addCommentValidate =[
+    body('description', 'The description is required').notEmpty(),
+    validateErrors
+]
+
+export const updateCommentValidate = [
+    body('description', 'The description is required').notEmpty(),
+    validateErrors
+]

@@ -1,3 +1,4 @@
+import Category from "../src/category/category.model.js"
 import User from "../src/user/user.model.js"
 
 export const existUsername = async(username) =>{
