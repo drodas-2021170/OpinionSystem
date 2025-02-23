@@ -1,0 +1,699 @@
+{
+	"info": {
+		"_postman_id": "438f2208-71f9-4951-8a20-a6244161e5d4",
+		"name": "OpinionSystem",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37951898"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Juan ",
+									"type": "text"
+								},
+								{
+									"key": "surname",
+									"value": "Hernandez",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "Xx_juanito_xX",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "hernandez@kinal.edu.gt",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789*sM",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"token\",data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "userData",
+									"value": "Dili",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789*sM",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "userData",
+									"value": "Xx_juanito_xX",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Juan",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "Hernandez",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "drodas-2021170@kinal.edu.gt",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "oldPassword",
+									"value": "123456789*sM1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "newPassword",
+									"value": "123456789*sM",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/user/updateUser",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"user",
+								"updateUser"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "addCategory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "VideoJuegos",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "VideoJuegos topic",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/category/addCategory",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"category",
+								"addCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCategory",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67baabc544e38fcc9f80670e",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "dsdsds",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "ss",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/category/updatedCategory",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"category",
+								"updatedCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletedCategory",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67baabc544e38fcc9f80670e",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/category/deleteCategory",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"category",
+								"deleteCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "localhost:3400/v1/category/",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"category",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Publication",
+			"item": [
+				{
+					"name": "AddPublication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "Fernanflloo",
+									"type": "text"
+								},
+								{
+									"key": "principal",
+									"value": "Fernanflloos",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "67baab8744e38fcc9f80670c",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/publication/addPublication",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"publication",
+								"addPublication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPublication",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3400/v1/publication/",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"publication",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMyPublications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3400/v1/publication/getMyPublication",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"publication",
+								"getMyPublication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePublication",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67b7413099a410a82b79109f",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Ola tu",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "67b73f5a99a410a82b791060",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/publication/updatedPublication",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"publication",
+								"updatedPublication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deletedPublication",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67b8054a91a88791baab0190",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/publication/deletedPublication",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"publication",
+								"deletedPublication"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comment",
+			"item": [
+				{
+					"name": "AddComment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "description",
+									"value": "Yo creo que fernanflo no es muy bueno",
+									"type": "text"
+								},
+								{
+									"key": "publication",
+									"value": "67baaf389e668126751bfdd2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/comment/addComment",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"comment",
+								"addComment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetComments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67b884cf39c97d1823d608b0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/comment/getComments",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"comment",
+								"getComments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateComment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67b8867639c97d1823d608b7",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Simonchos",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/comment/updateComment",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"comment",
+								"updateComment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteComment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "67b7ae761d524feee7ca33a0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3400/v1/comment/deleteComment",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"comment",
+								"deleteComment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
