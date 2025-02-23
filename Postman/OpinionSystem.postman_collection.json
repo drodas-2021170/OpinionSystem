@@ -125,6 +125,32 @@
 			"name": "User",
 			"item": [
 				{
+					"name": "getUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3400/v1/user/",
+							"host": [
+								"localhost"
+							],
+							"port": "3400",
+							"path": [
+								"v1",
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "updateUser",
 					"request": {
 						"method": "PUT",
@@ -252,12 +278,12 @@
 								},
 								{
 									"key": "description",
-									"value": "dsdsds",
+									"value": "Videogames category",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "ss",
+									"value": "Videogames",
 									"type": "text"
 								}
 							]
@@ -367,12 +393,12 @@
 							"urlencoded": [
 								{
 									"key": "title",
-									"value": "Fernanflloo",
+									"value": "Rubius el mejor streamer del mundo",
 									"type": "text"
 								},
 								{
 									"key": "principal",
-									"value": "Fernanflloos",
+									"value": "Rubius ha demostrado ser lo mejor de lo mejor porque...",
 									"type": "text"
 								},
 								{
@@ -465,17 +491,22 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "67b7413099a410a82b79109f",
+									"value": "67bb8c95b21ac381707dcb23",
 									"type": "text"
 								},
 								{
 									"key": "title",
-									"value": "Ola tu",
+									"value": "Geman el mejor del mundo",
+									"type": "text"
+								},
+								{
+									"key": "principal",
+									"value": "German es el mejor estas razones:",
 									"type": "text"
 								},
 								{
 									"key": "category",
-									"value": "67b73f5a99a410a82b791060",
+									"value": "67baab8744e38fcc9f80670c",
 									"type": "text"
 								}
 							]
@@ -511,7 +542,7 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "67b8054a91a88791baab0190",
+									"value": "67bb83eed643b800fd4d8669",
 									"type": "text"
 								}
 							]
@@ -552,7 +583,7 @@
 							"urlencoded": [
 								{
 									"key": "description",
-									"value": "Yo creo que fernanflo no es muy bueno",
+									"value": "Yo opino que el mejor es el ded",
 									"type": "text"
 								},
 								{
@@ -596,8 +627,9 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "67b884cf39c97d1823d608b0",
-									"type": "text"
+									"value": "67ba6005b19768f46ca7656d",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -632,12 +664,12 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "67b8867639c97d1823d608b7",
+									"value": "67bb84f9d643b800fd4d8689",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Simonchos",
+									"value": "no si no hace nada",
 									"type": "text"
 								}
 							]
@@ -673,7 +705,7 @@
 							"urlencoded": [
 								{
 									"key": "id",
-									"value": "67b7ae761d524feee7ca33a0",
+									"value": "67bb84f9d643b800fd4d8689",
 									"type": "text"
 								}
 							]
