@@ -1,5 +1,4 @@
 import mongoose from 'mongoose'
-import { defaultAdmin } from '../src/auth/auth.controller.js'
 
 export const connect = async() =>{
     try {
@@ -10,8 +9,7 @@ export const connect = async() =>{
             console.log('MongoDB | try connecting ')
         })
         mongoose.connection.on('connected', ()=>{
-            console.log('MongoDB | connected to mongodb')
-            defaultAdmin()
+            console.log('MongoDB | connected to mongodb')       
         })
         mongoose.connection.once('open', ()=>{
             console.log('MongoDB | connected to database')
