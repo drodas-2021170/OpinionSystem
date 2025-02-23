@@ -26,7 +26,7 @@ export const addComment = async(req,res) =>{
 
 
 
-export const getAllCommentPublication = async(req, res) =>{
+export const getMyCommentPublication = async(req, res) =>{
     try {
         let comment = await Comment.find({
             $and: [
@@ -45,7 +45,7 @@ export const getAllCommentPublication = async(req, res) =>{
             }
         }
     )
-        
+        if(comment.length === 0) return res.send({success:true, message:'You dont have any comments right now'})
             return res.send({success:true, message:'Comments found', comment, total: comment.length})
     } catch (err) {
         console.error(err)
@@ -62,7 +62,8 @@ export const updateComment = async(req,res) =>{
         let comment = await Comment.findById(id)
 
         if(!comment) return res.status(404).send({success:false, message:'Comment not found'})
-            
+        
+        if(comment.status === false) return res.status(404).send({success:false, message:'Comment not exist'})
         if(req.user.uid !== comment.user.toString()) return res.status(403).send({success:false, message:'Only the owner can edit this comment'})
         
         let updatedComment = await Comment.findByIdAndUpdate(
