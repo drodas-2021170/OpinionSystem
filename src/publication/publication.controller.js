@@ -1,6 +1,7 @@
 import User from "../user/user.model.js"
 import Category from "../category/category.model.js"
 import Publication from "./publication.model.js"
+import Comment from "../coment/coment.model.js"
 
 export const addPublication = async(req,res) =>{
     try {
@@ -116,12 +117,16 @@ export const deletePublication = async(req,res) =>{
     
         if(!publication) return res.status(404).send({sucess:false, message:'Publication not found'})
         
-        if(req.user.uid !== publication.user.toString()) return res.status(404).send({success:false, message:'You are not the owner of this publicartion'})
+        if(req.user.uid !== publication.user.toString()) return res.status(404).send({success:false, message:'You are not the owner of this publication'})
         
         let deletePublication  = await Publication.findByIdAndUpdate(
             id, {status:false}, {new:true}
         )
-        return res.send({success:true, message:'Publication deleted', })
+        await Comment.updateMany(
+            {publication:publication},
+            {status: false}
+        )
+        return res.send({success:true, message:'Publication deleted' })
     } catch (err) {
         console.error(err)
         return res.status(500).send({success:false, message:'General Error', err})
