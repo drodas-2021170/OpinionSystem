@@ -14,10 +14,10 @@ export const defaultAdmin = async(req,res) =>{
         if(!adminRole)
             adminRole = await User.create(
                 {
-                    name: 'Miguel Enrique', 
-                    surname:'Castellanos Zepeta', 
-                    email: 'mcastellanos@gmail.com',
-                    username: 'mcastellanos',
+                    name: 'Dilan Andre', 
+                    surname:'Rodas Aldana', 
+                    email: 'dili@gmail.com',
+                    username: 'Dili',
                     password: await encrypt(process.env.PASSWORD_ADMIN),
                     role: 'ADMIN'
                 }

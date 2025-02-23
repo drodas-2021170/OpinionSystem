@@ -33,6 +33,7 @@ export const addCategory = async(req,res) =>{
     try {
         let data = req.body
 
+        if(data.name === 'Default Category') return res.status(402).send({success:false, message:'You cant create other Default Category '})
         let category = new Category(data)
 
         await category.save()
@@ -50,8 +51,9 @@ export const updateCategory = async(req,res) =>{
         let data = req.body
 
         let categoryId = await Category.findOne({_id:id})
-        if(categoryId.name === 'Default Category') return res.status(403).send({success:false, message:'The default category cant be updated'})
         if(!categoryId) return res.status(404).send({success: false, message:'Category not found'})
+        if(data.name === 'Default Category')return res.status(403).send({success:false, message:'You cant rename other category Default Category'})
+        if(categoryId.name === 'Default Category')  return res.status(403).send({success:false, message:'The default category cant be updated'})
 
         let updatedCategory = await Category.findByIdAndUpdate(
             id, data, {new:true}
