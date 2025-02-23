@@ -41,7 +41,37 @@ export const getAllPublication = async(req,res) =>{
         }
     )
         if(!publications)return res.status(404).send({success:false, message:'Publications does not found'})
-            return res.send({success:true, message:'Publications found',publications})
+            return res.send({success:true, message:'Publications found',publications, total: publications.length})
+    } catch (error) {
+        console.error(err)
+        return res.status(500).send({success:false, message:'General Error', err})
+    }
+}
+
+
+export const getMyPublication = async(req,res) =>{
+    try {
+        let publications = await Publication.find({
+            $and: [
+                { user: req.user.uid },
+                { status: true }
+            ]
+        })
+        .select('-status')
+        .populate('user', 'username')
+        .populate('category', 'name')
+        .populate({
+            path: 'comment',
+            match:{status:true},
+            select: 'description',
+            populate:{
+                path: 'user',
+                select: 'username -_id'
+            }
+        }
+    )
+        if(!publications)return res.status(404).send({success:false, message:'Publications does not found',})
+            return res.send({success:true, message:'Publications found',total: publications.length,publications})
     } catch (error) {
         console.error(err)
         return res.status(500).send({success:false, message:'General Error', err})
@@ -62,7 +92,7 @@ export const updatePublication = async(req,res) =>{
         
         if(!publication) return res.status(404).send({success:false, message:'Publication not found'})
             
-        if(user.id !== publication.user.toString()) return res.status(404).send({success:false, message:'You are not the owner of this publicartion'})
+        if(user.id !== publication.user.toString()) return res.status(404).send({success:false, message:'You are not the owner of this publication'})
         
         if(category){
             if(!categor) return res.status(404).send({success:false, message:'Category not found'})
