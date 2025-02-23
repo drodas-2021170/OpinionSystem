@@ -31,3 +31,14 @@ export const updateUser = async(req,res) =>{
     }
 }
 
+export const getUsers = async(req,res) =>{
+    try {
+        let users = await User.find()
+        
+        if(!users) return res.status(404).send({success:false, message:'Users not found'})
+            return res.send({success:true, message:'User found', users, total: users.length})
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({success:false, message: 'General Error', err})
+    }
+}
