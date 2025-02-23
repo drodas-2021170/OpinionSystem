@@ -50,13 +50,16 @@ export const updateCategory = async(req,res) =>{
         let data = req.body
 
         let categoryId = await Category.findOne({_id:id})
+        if(categoryId.name === 'Default Category') return res.status(403).send({success:false, message:'The default category cant be updated'})
         if(!categoryId) return res.status(404).send({success: false, message:'Category not found'})
 
         let updatedCategory = await Category.findByIdAndUpdate(
             id, data, {new:true}
         )
+        
         if(!updateCategory) return res.status(404).send({success: false, message:'Category not found'})
             return res.send({success: true, message:'Category updated', updatedCategory})
+    
     } catch (err) {
         console.error(err)
         return res.status(500).send({success: false, message:'General Error', err})

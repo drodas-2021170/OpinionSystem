@@ -16,9 +16,17 @@ const publicationSchema = Schema(
             type: Schema.Types.ObjectId,
             ref:'User'
         },
+        comment:[{
+            type: Schema.Types.ObjectId,
+            ref:'Coment'
+        }],
         category:{
             type: Schema.Types.ObjectId,
             ref:'Category'
+        },
+        status:{
+            type:Boolean,
+            default: true
         }
     }
 )

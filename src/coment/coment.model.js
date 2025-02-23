@@ -14,6 +14,10 @@ const comentSchema = Schema(
         publication:{
             type: Schema.Types.ObjectId,
             ref:'Publication'
+        },
+        status:{
+            type: Boolean,
+            default: true
         }
     }
 ) 
