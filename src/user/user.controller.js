@@ -3,7 +3,7 @@
 import { checkPassword, encrypt } from "../../utils/encrypt.js"
 import User from "./user.model.js"
 
-
+//Se crea la función que actuliza algunos datos del usuario
 export const updateUser = async(req,res) =>{
     try {
         
@@ -11,6 +11,7 @@ export const updateUser = async(req,res) =>{
         let{oldPassword, newPassword} = req.body
         let user = await User.findById(req.user.uid)
         
+        if(data.role) return res.status(403).send({success:false, mesage:'You cant update your role'})
         if(oldPassword){
             let match = await checkPassword(user.password, oldPassword)
             if (!match) {
@@ -31,6 +32,7 @@ export const updateUser = async(req,res) =>{
     }
 }
 
+//Se función que obtiene todos los usuarios
 export const getUsers = async(req,res) =>{
     try {
         let users = await User.find()
