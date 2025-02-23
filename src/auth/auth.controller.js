@@ -8,6 +8,7 @@ export const test = (req, res) =>{
     return res.send({message:'Test is running'})
 }
 
+//Se crea la funcion defaultAdmin que crea el admin por defecto
 export const defaultAdmin = async(req,res) =>{
     try {
         let adminRole = await User.findOne({role: 'ADMIN'})
@@ -30,7 +31,7 @@ export const defaultAdmin = async(req,res) =>{
     }
 }
 
-
+// Se crea la función para registrar a los usuarios con un role de USER por defecto
 export const register = async(req,res) =>{
     try {
         let data = req.body
@@ -48,7 +49,7 @@ export const register = async(req,res) =>{
     }
 }
 
-
+//Se crea la función login que deja inciar sesión al usuario
 export const login = async(req,res) =>{
     try {
         let{userData, password} = req.body

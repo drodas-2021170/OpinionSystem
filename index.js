@@ -7,5 +7,7 @@ import { defaultAdmin } from './src/auth/auth.controller.js'
 config()
 initServer()
 connect()
+//Se llama la categoria Defaul
 defaultCategory()
+//Se llama el admin por defecto
 defaultAdmin()

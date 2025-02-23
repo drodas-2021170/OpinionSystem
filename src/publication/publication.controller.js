@@ -3,6 +3,7 @@ import Category from "../category/category.model.js"
 import Publication from "./publication.model.js"
 import Comment from "../coment/coment.model.js"
 
+//Se crea la función que crea la publicación
 export const addPublication = async(req,res) =>{
     try {
         let data = req.body
@@ -25,6 +26,7 @@ export const addPublication = async(req,res) =>{
     }
 }
 
+//Se crea la función que obtiene todas las publicaciónes
 export const getAllPublication = async(req,res) =>{
     try {
         let publications = await Publication.find({status:true})
@@ -49,7 +51,7 @@ export const getAllPublication = async(req,res) =>{
     }
 }
 
-
+//Se crea la funcion que obtiene todas las publicaciones que el usuario que este logeado tiene
 export const getMyPublication = async(req,res) =>{
     try {
         let publications = await Publication.find({
@@ -79,6 +81,7 @@ export const getMyPublication = async(req,res) =>{
     }
 }
 
+//Se crea la función que actualiza la publicación que el usuario haya hecho
 export const updatePublication = async(req,res) =>{
     try {
         let id = req.body.id
@@ -108,6 +111,7 @@ export const updatePublication = async(req,res) =>{
     }
 }
 
+//Se crea la función que elimina la publicación que el usuario haya hecho
 export const deletePublication = async(req,res) =>{
     try {
         let id = req.body.id

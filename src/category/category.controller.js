@@ -1,6 +1,7 @@
 import Category from "./category.model.js"
 import Publication from "../publication/publication.model.js"
 
+//Se crea la funcion que crea la categoria por defecto
 export const defaultCategory = async(req,res) =>{
     try {
         let deCategory = await Category.findOne({name: 'Default Category'})
@@ -18,6 +19,7 @@ export const defaultCategory = async(req,res) =>{
     }
 }
 
+//Se crea la función que obtiene todas las categorias
 export const getCategories = async(req,res) =>{
     try {
         let categories = await Category.find()
@@ -29,6 +31,7 @@ export const getCategories = async(req,res) =>{
     }
 }
 
+//Se crea la función que añade la categoria
 export const addCategory = async(req,res) =>{
     try {
         let data = req.body
@@ -45,6 +48,7 @@ export const addCategory = async(req,res) =>{
     }
 }
 
+//Se crea la función que actualiza la categoria, con excepción de la categoria por defecto
 export const updateCategory = async(req,res) =>{
     try {
         let id = req.body.id
@@ -68,6 +72,7 @@ export const updateCategory = async(req,res) =>{
     }
 }
 
+//Se crea la función que elimina la categoria
 export const deleteCategory = async(req,res) =>{
     try {
         let id = req.body.id

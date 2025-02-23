@@ -2,6 +2,7 @@ import User from "../user/user.model.js"
 import Publication from "../publication/publication.model.js"
 import Comment from "./coment.model.js"
 
+//Se crea la función que agrega el comentario, el cual hace un push hacia el modelo de publication
 export const addComment = async(req,res) =>{
     try {
         let data = req.body
@@ -25,7 +26,7 @@ export const addComment = async(req,res) =>{
 }
 
 
-
+//Se crea la función que obtiene todos los comentarios que el usuario ha hecho y que no se hayan eliminado
 export const getMyCommentPublication = async(req, res) =>{
     try {
         let comment = await Comment.find({
@@ -53,7 +54,7 @@ export const getMyCommentPublication = async(req, res) =>{
     }
 }
 
-
+//Se crea la función que actualiza un comentario que el usuario quiera, solo el que creo el comentario puede actualizar el mismo comentario
 export const updateComment = async(req,res) =>{
     try {
         let id = req.body.id
@@ -77,7 +78,7 @@ export const updateComment = async(req,res) =>{
     }
 }
 
-
+//Se elimina el comentario, solo el que creo el comentario lo puede eliminar
 export const deleteComment = async(req,res) =>{
     try{
         let id = req.body.id
